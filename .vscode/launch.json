@@ -7,8 +7,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/kiwiland.js"
+            "name": "run kiwiland test",
+            "program": "${workspaceFolder}/kiwiland_test.js"
         }
     ]
 }

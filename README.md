@@ -1,28 +1,23 @@
-A tiny Node.js POC to solve the ThoughtWorks ‘Trains’ coding challenge
+A Simple And Short solution the Kiwiland coding challenge, based on the ThoughtWorks ‘Trains’ code challenge.
 
 pablo.elustondo@gmail.com Nov 29 2018
 
-This code is an original simple proof of concept to solve the famous ThoughtWorks ‘Trains’ coding challenge. The challenge requirements and test cases are provided below. This code works and pass the provided tests and is extremely small and easy to understand quickly. Is also a good way is and make sure the requirements and the general idea of the solution are understood well.
+This code is an original and straightforward way to solve the famous ThoughtWorks ‘Trains’ coding challenge described below. The root folder has the first version done in a couple of hours using Node.js, Typescript and standard modern javascript techniques. That version satisfy the challenge requirements and test cases  provided but needs performance, scalability and robustness improvements.  
 
-The whole code fits in one Typescript file with no dependencies that transpile to Javascript and runs on Node.js. You can run the code out of the box writing this in the command line:
+The whole code fits in one Typescript file with no dependencies that transpile to Javascript and runs on Node.js. You can run the test code out of the box writing this in the command line:
 
-> node kiwiland.js
+======> node kiwiland_test.js  <======
 
-I did write using VSCode and suggest you to do the same. To modify the code make sure you run the build tasks to transpile the Typescript. 
-
-However, this code should be considered a POC or 'spike' and should not be used as it in a project. Various optimizations and coding best practices have to be applied. Here is a list of things to consider:
-
-Performance and scalability in general, this is computationally intensive when the train networks growth. The set of possible routes growths exponentially. 
-
-Avoiding the use of recursion
-Consider using another more efficient and scalable language like Go.
-Use a testing framework, like Mocha, and increase coverage.
-Test the execution in large graphs.
-Optimize the algorithm.
-Precompute most metrics like route distance, minimum and maximums.. during the search.
-Analyze the trade-off between computational and memory complexity
+Just in case, make sure you did that before trying that:
+1) make sure you have the latest Node.js installed 
+2) create a folder and clone the repo doing:
+=> git clone https://github.com/pabloelustondo/thoughtworks-trains-coding-challenge
+4) cd thoughtWorks-trains-coding-challenge 
 
 
+I did write using VSCode, and I suggest you do the same. To modify the code make sure you run the build tasks to transpile the Typescript. 
+
+However, this code in the root folder is the first version that needs improvements. The folder "improvements" has the tests, the analysis and the code with improved versions.
 ORIGINAL REQUIREMENTS AND TEST CASES
 
 A local commuter railroad services a number of towns in
