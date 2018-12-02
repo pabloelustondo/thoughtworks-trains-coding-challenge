@@ -43,11 +43,13 @@ print("6. The number of trips starting at C and ending at C with a maximum of 3\
 var allRoutes6 = kiwiland.allRoutesForAMaximunNumberOfStops("C", "C", 3);
 checkAndPrint(allRoutes6.length, 2);
 printroutes(allRoutes6);
+checkRoutesAndPrint(allRoutes6, ["CDC", "CEBC"]);
 // TEST CASE 7
 print("7. The number of trips starting at A and ending at C with exactly 4 stops.\nIn the sample data below, there are three such trips: A to C (via B,C,D); A\nto C (via D,C,D); and A to C (via D,E,B).");
 var allRoutes7 = kiwiland.allRoutesForANumberOfStops("A", "C", 4);
 checkAndPrint(allRoutes7.length, 3);
 printroutes(allRoutes7);
+checkRoutesAndPrint(allRoutes7, ["ABCDC", "ADCDC", "ADEBC"]);
 // TEST CASE 8
 print("8. The length of the shortest route (in terms of distance to travel) from A\nto C.Output #8: 9");
 checkAndPrint(kiwiland.shortestDistance("A", "C"), 9);
@@ -59,6 +61,7 @@ print("10. The number of different routes from C to C with a distance of less th
 var allRoutes10 = kiwiland.allOfRoutesMaximunDistance("C", "C", 29);
 checkAndPrint(allRoutes10.length, 7);
 printroutes(allRoutes10);
+checkRoutesAndPrint(allRoutes10, ["CDC", "CEBC", "CEBCDC", "CDCEBC", "CDEBC", "CEBCEBC", "CEBCEBCEBC"]);
 print("EVERYTHING LOOK GOOD!");
 // UTILITY FUNCTIONS TO PRINT AND CHECK CONDITIONS
 function checkAndPrint(response, answer) {
@@ -76,8 +79,16 @@ exports.print = print;
 function printroutes(routes) {
     // print routes array nice
     routes.forEach(function (r) {
-        console.log(JSON.stringify(r.join(), null, 2));
+        console.log(JSON.stringify(r.join(""), null, 2));
     });
 }
 exports.printroutes = printroutes;
+function checkRoutesAndPrint(response, answer) {
+    var routeStrings = response.reduce(function (acc, r) { return acc.concat([r.join("")]); }, []);
+    var allRoutesDiscovered = answer.every(function (s) { return routeStrings.some(function (r) { return r == s; }); });
+    if (!allRoutesDiscovered)
+        throw "Not all routes were discovered!";
+    console.log("All expected routes where found");
+}
+exports.checkRoutesAndPrint = checkRoutesAndPrint;
 //# sourceMappingURL=kiwiland_test.js.map

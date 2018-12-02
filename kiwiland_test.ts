@@ -56,6 +56,7 @@ stops). and C-E-B-C (3 stops).`);
 const allRoutes6 = kiwiland.allRoutesForAMaximunNumberOfStops("C", "C", 3);
 checkAndPrint(allRoutes6.length, 2);
 printroutes(allRoutes6);
+checkRoutesAndPrint(allRoutes6,["CDC", "CEBC"])
 
 // TEST CASE 7
 print(`7. The number of trips starting at A and ending at C with exactly 4 stops.
@@ -65,6 +66,8 @@ to C (via D,C,D); and A to C (via D,E,B).`);
 const allRoutes7 = kiwiland.allRoutesForANumberOfStops("A", "C", 4);
 checkAndPrint(allRoutes7.length, 3);
 printroutes(allRoutes7);
+checkRoutesAndPrint(allRoutes7,["ABCDC", "ADCDC", "ADEBC"])
+
 
 // TEST CASE 8
 print(`8. The length of the shortest route (in terms of distance to travel) from A
@@ -84,6 +87,7 @@ CEBCEBC, CEBCEBCEBC.`);
 const allRoutes10 = kiwiland.allOfRoutesMaximunDistance("C", "C", 29);
 checkAndPrint(allRoutes10.length, 7);
 printroutes(allRoutes10);
+checkRoutesAndPrint(allRoutes10,["CDC", "CEBC", "CEBCDC", "CDCEBC", "CDEBC","CEBCEBC", "CEBCEBCEBC"])
 
 print(`EVERYTHING LOOK GOOD!`);
 
@@ -111,8 +115,20 @@ export function print(o) {
 export function printroutes(routes: Route[]) {
   // print routes array nice
   routes.forEach(r => {
-    console.log(JSON.stringify(r.join(), null, 2));
+    console.log(JSON.stringify(r.join(""), null, 2));
   });
+}
+
+export function checkRoutesAndPrint(response: Route[], answer: string[]) {
+
+  let routeStrings:string[] =   response.reduce( (acc,r) => [...acc, r.join("")] ,[] )
+
+  let allRoutesDiscovered = answer.every( s => routeStrings.some( r => r==s ) )
+
+  if (!allRoutesDiscovered)
+  throw `Not all routes were discovered!`;
+
+  console.log(`All expected routes where found`);
 }
 
 
