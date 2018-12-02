@@ -15,7 +15,7 @@ Just in case, make sure you did that before trying that:
 4) cd thoughtWorks-trains-coding-challenge 
 
 
-I did write using VSCode, and I suggest you do the same. To modify the code make sure you run the build tasks to transpile the Typescript. 
+I did use VSCode and Typescript and I suggest you do the same. To modify the code make sure you run the build tasks to transpile the Typescript and do npm install to install the necessary types.
 
 However, this code in the root folder is the first version that needs improvements. The folder "improvements" has the tests, the analysis and the code with improved versions.
 ORIGINAL REQUIREMENTS AND TEST CASES

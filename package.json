@@ -1,0 +1,22 @@
+{
+  "name": "kiwiland",
+  "version": "1.0.0",
+  "description": "A simple and fast solution for the ThoughWorks 'Train' code challenge ",
+  "main": "kiwiland_test.js",
+  "scripts": {
+    "test": "node kiwiland_test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pabloelustondo/thoughtworks-trains-coding-challenge.git"
+  },
+  "author": "Pablo Elustondo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pabloelustondo/thoughtworks-trains-coding-challenge/issues"
+  },
+  "homepage": "https://github.com/pabloelustondo/thoughtworks-trains-coding-challenge#readme",
+  "devDependencies": {
+    "@types/node": "^10.12.11"
+  }
+}
