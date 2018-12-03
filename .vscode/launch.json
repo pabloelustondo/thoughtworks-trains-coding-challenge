@@ -14,8 +14,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "run kiwiland2 test",
-            "program": "${workspaceFolder}/optimizations/recursion/kiwiland2_test.js"
+            "name": "run kiwiland4 test",
+            "program": "${workspaceFolder}/optimizations/data_structure/kiwiland4_test.js"
         }
     ]
 }

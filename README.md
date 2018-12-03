@@ -2,7 +2,9 @@ A Simple And Short solution the Kiwiland coding challenge, based on the ThoughtW
 
 pablo.elustondo@gmail.com Nov 29 2018
 
-This code is an original and straightforward way to solve the famous ThoughtWorks ‘Trains’ coding challenge described below. The root folder has the first version done in a couple of hours using Node.js, Typescript and standard modern javascript techniques. That version satisfy the challenge requirements and test cases  provided but needs performance, scalability and robustness improvements.  
+This code is an original and straightforward way to solve the famous ThoughtWorks ‘Trains’ coding challenge described below. The root folder has the first version done in a couple of hours using Node.js, Typescript and standard modern javascript techniques. That version satisfy the challenge requirements and test cases  provided but needs performance, scalability and robustness improvements.
+
+For the moment, the optimizations that I tried in the folder "optimizations" did not produce better versions. I tried there to push the limits of the maximun length of the possible route. This is a hard exponensial problem as, by definition, the number of possible routes grows exponentially with the maximun route length. I managed to calculate routes up to 40 stops of length. After that, I triedd to 45 and the program crashs due to heap limits. Recursion actually is helping to keep memory. 
 
 The whole code fits in one Typescript file with no dependencies that transpile to Javascript and runs on Node.js. You can run the test code out of the box writing this in the command line:
 
