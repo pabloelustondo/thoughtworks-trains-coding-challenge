@@ -120,7 +120,7 @@ export class Kiwiland {
         //Now, we recursivelly calculate all the routes starting from the new, longer, route
         const lroutes = this.allRoutesRecursive(
           lroute, // This route is one stop longer that the input route.
-          0,
+          lrouteDistance,
           destination,
           maxDistance,
           maxLength

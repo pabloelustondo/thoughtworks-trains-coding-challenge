@@ -70,7 +70,7 @@ var Kiwiland = /** @class */ (function () {
     Kiwiland.prototype.allRoutes = function (start, destination) {
         // All posible routes up to a certain maximun distance that we can find from Start to Destination
         // Note: According to the definitions, The set of routes include routes with loops such as: CEBCEBCEBC
-        return this.allRoutesRecursive([start], destination);
+        return this.allRoutesRecursive([start], 0, destination);
     };
     Kiwiland.prototype.allRoutesRecursive = function (
     /*
@@ -88,20 +88,20 @@ var Kiwiland = /** @class */ (function () {
     due to requirements ask both about sets of routes up to some "stops" and also up to a distance.
     */
     route, // current route to start calculating the set
-    destination, // This is always the same destination town being passed
+    routeLength, destination, // This is always the same destination town being passed
     maxDistance, maxLength) {
         if (maxDistance === void 0) { maxDistance = DEFAULT_MAXIMUN_ROUTE_DISTANCE; }
         if (maxLength === void 0) { maxLength = DEFAULT_MAXIMUN_ROUTE_LENGTH; }
         // The start of every route is the very original start
         // The end of the route is where the route generations needs to start
-        var currentNode = route[route.length - 1];
-        var reachableTowns = this.graph[currentNode];
+        var currentTown = route[route.length - 1];
+        var reachableTowns = this.graph[currentTown];
         var routes = []; // This is the total set of routes that is going to be returned
         // Notice later that  if maxDistance or MaxLength were reached thi function will return the empty seet.
         // Here we go link by link creating new routes longer.
         for (var town in reachableTowns) {
             var lroute = route.concat([town]); // This is one of the new routes.
-            var lrouteDistance = this.routeDistance(lroute);
+            var lrouteDistance = routeLength + this.linkDistance(currentTown, town);
             if (lrouteDistance <= maxDistance && // that have distance equal or less than maxDistance
                 lroute.length <= maxLength // and lenght equal or less than maxLength
             ) {
@@ -111,7 +111,7 @@ var Kiwiland = /** @class */ (function () {
                 }
                 //Now, we recursivelly calculate all the routes starting from the new, longer, route
                 var lroutes = this.allRoutesRecursive(lroute, // This route is one stop longer that the input route.
-                destination, maxDistance, maxLength);
+                lrouteDistance, destination, maxDistance, maxLength);
                 //And finally we add all those new routes into our set
                 routes = routes.concat(lroutes);
             }
@@ -137,7 +137,7 @@ var Kiwiland = /** @class */ (function () {
     Kiwiland.prototype.allRoutesForAMaximunNumberOfStops = function (
     // thiwsfunction just filters the set to the ones up to a  provided number of steps
     start, destination, numberOfStops) {
-        return this.allRoutesRecursive([start], destination, DEFAULT_MAXIMUN_ROUTE_DISTANCE, numberOfStops + 1);
+        return this.allRoutesRecursive([start], 0, destination, DEFAULT_MAXIMUN_ROUTE_DISTANCE, numberOfStops + 1);
     };
     Kiwiland.prototype.allRoutesForANumberOfStops = function (
     // this function just filters the set to the ones with the exact provided number of steps
@@ -147,11 +147,11 @@ var Kiwiland = /** @class */ (function () {
     Kiwiland.prototype.allOfRoutesMaximunDistance = function (
     // this function does the filter using the internal accepted mas distance
     start, destination, maxDistance) {
-        return this.allRoutesRecursive([start], destination, maxDistance);
+        return this.allRoutesRecursive([start], 0, destination, maxDistance);
     };
     Kiwiland.prototype.shortestDistance = function (start, destination) {
         var _this = this;
-        return this.allRoutesRecursive([start], destination).reduce(function (acc, route) {
+        return this.allRoutesRecursive([start], 0, destination).reduce(function (acc, route) {
             var distance = _this.routeDistance(route);
             if (acc === exports.NOROUTE) {
                 return distance;
