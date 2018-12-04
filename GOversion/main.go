@@ -82,6 +82,8 @@ func main() {
 
 } //END OF MAIN
 
+// SOME UTILITY FUNCTIONS TO CHECK AND PRINT
+
 func checkDistanceAndPrint(response KWLDistance, answer KWLDistance) {
 	if response != answer {
 		fmt.Printf("Wrong answer, Expected answer got response")
