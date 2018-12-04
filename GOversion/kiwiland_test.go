@@ -9,9 +9,7 @@ cover function add Stop route
 */
 
 import (
-	//"fmt"
 	"testing"
-	//	"errors"
 )
 
 func TestKWLGraphAddGoodLink(t *testing.T) {
@@ -114,13 +112,11 @@ func TestKWLAllRoutes(t *testing.T) {
 
 	// Test some routes
 
-	routes, _, error := g.allRoutes("C","C", KWLOptions{maxRouteDistance:30, maxRouteLength:4})
+	 _, minDistance, error := g.allRoutes("C","C", KWLOptions{maxRouteDistance:30, maxRouteLength:4})
 
-	if (error != nil){
+	if (error != nil || minDistance == NOROUTE){
 		t.Errorf("Failed to find existing routes error: %v", error)
 	}
-
-	println(routes)
 }
 
 
@@ -220,40 +216,7 @@ func TestAllRouteOriginalTestCases(t *testing.T){
 	checkNumbers(len(allRoutes10), 7,t)
 	checkRoutes(allRoutes10, []KWLRoute{"C-D-C", "C-E-B-C", "C-E-B-C-D-C", "C-D-C-E-B-C", "C-D-E-B-C", "C-E-B-C-E-B-C", "C-E-B-C-E-B-C-E-B-C"},t)
 
-
 }
-
-
-
-/* //////////// OLD GO CODE
-func TestNewDeck(t *testing.T) {
-
-	d := newDeck()
-
-	if len(d) != 20 {
-		t.Errorff("expected 20 gto %v", len(d))
-	}
-}
-
-func TestSaveAndReadDeck(t *testing.T) {
-	const testFile = "_decktesting"
-	removeFile(testFile)
-
-	d := newDeck()
-
-	d.saveToFile()
-
-	dd := readFromFile()
-
-	if dd == nil {
-		t.Errorff("Could not read file")
-	}
-
-}
-
-*/
-
-
 
 // UTILITY FUNCTIONS
 
